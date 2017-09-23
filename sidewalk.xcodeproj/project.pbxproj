@@ -24,6 +24,7 @@
 		0F4166D31F75F780005377C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0F4166D61F75F780005377C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0F4166D81F75F780005377C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0FC9C7171F7609BD004602E3 /* 麥當勞至辦公室.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "麥當勞至辦公室.gpx"; sourceTree = "<group>"; };
 		5BC3DBFA1CC03BBCE789DC13 /* Pods-sidewalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sidewalk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sidewalk/Pods-sidewalk.debug.xcconfig"; sourceTree = "<group>"; };
 		89D68454C58C555046A62A0B /* Pods-sidewalk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sidewalk.release.xcconfig"; path = "Pods/Target Support Files/Pods-sidewalk/Pods-sidewalk.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -61,6 +62,7 @@
 		0F4166CB1F75F780005377C7 /* sidewalk */ = {
 			isa = PBXGroup;
 			children = (
+				0FC9C7161F760990004602E3 /* GPX */,
 				0F4166CC1F75F780005377C7 /* AppDelegate.swift */,
 				0F4166CE1F75F780005377C7 /* ViewController.swift */,
 				0F4166D01F75F780005377C7 /* Main.storyboard */,
@@ -69,6 +71,14 @@
 				0F4166D81F75F780005377C7 /* Info.plist */,
 			);
 			path = sidewalk;
+			sourceTree = "<group>";
+		};
+		0FC9C7161F760990004602E3 /* GPX */ = {
+			isa = PBXGroup;
+			children = (
+				0FC9C7171F7609BD004602E3 /* 麥當勞至辦公室.gpx */,
+			);
+			path = GPX;
 			sourceTree = "<group>";
 		};
 		5EB1BF07E97F9A79CBDF8C57 /* Frameworks */ = {
