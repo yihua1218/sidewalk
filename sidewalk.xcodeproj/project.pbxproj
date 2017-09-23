@@ -12,9 +12,11 @@
 		0F4166D21F75F780005377C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F4166D01F75F780005377C7 /* Main.storyboard */; };
 		0F4166D41F75F780005377C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F4166D31F75F780005377C7 /* Assets.xcassets */; };
 		0F4166D71F75F780005377C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F4166D51F75F780005377C7 /* LaunchScreen.storyboard */; };
+		A1FB11B4466DD2E9B7BB2D18 /* Pods_sidewalk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 019E32678B3C8BF6C3E71CF6 /* Pods_sidewalk.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		019E32678B3C8BF6C3E71CF6 /* Pods_sidewalk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sidewalk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F4166C91F75F780005377C7 /* sidewalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sidewalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F4166CC1F75F780005377C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F4166CE1F75F780005377C7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +24,8 @@
 		0F4166D31F75F780005377C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0F4166D61F75F780005377C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0F4166D81F75F780005377C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5BC3DBFA1CC03BBCE789DC13 /* Pods-sidewalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sidewalk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sidewalk/Pods-sidewalk.debug.xcconfig"; sourceTree = "<group>"; };
+		89D68454C58C555046A62A0B /* Pods-sidewalk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sidewalk.release.xcconfig"; path = "Pods/Target Support Files/Pods-sidewalk/Pods-sidewalk.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1FB11B4466DD2E9B7BB2D18 /* Pods_sidewalk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +45,8 @@
 			children = (
 				0F4166CB1F75F780005377C7 /* sidewalk */,
 				0F4166CA1F75F780005377C7 /* Products */,
+				78F03C40B32E8B84119E472F /* Pods */,
+				5EB1BF07E97F9A79CBDF8C57 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +71,23 @@
 			path = sidewalk;
 			sourceTree = "<group>";
 		};
+		5EB1BF07E97F9A79CBDF8C57 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				019E32678B3C8BF6C3E71CF6 /* Pods_sidewalk.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		78F03C40B32E8B84119E472F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5BC3DBFA1CC03BBCE789DC13 /* Pods-sidewalk.debug.xcconfig */,
+				89D68454C58C555046A62A0B /* Pods-sidewalk.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F4166DB1F75F780005377C7 /* Build configuration list for PBXNativeTarget "sidewalk" */;
 			buildPhases = (
+				FD5ABCF9E4EA2D6976101D5A /* [CP] Check Pods Manifest.lock */,
 				0F4166C51F75F780005377C7 /* Sources */,
 				0F4166C61F75F780005377C7 /* Frameworks */,
 				0F4166C71F75F780005377C7 /* Resources */,
+				E39D487AD162D25760858F97 /* [CP] Embed Pods Frameworks */,
+				D1A56206494E5A4CF433E31B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -130,6 +157,80 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D1A56206494E5A4CF433E31B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-sidewalk/Pods-sidewalk-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-sidewalk/Pods-sidewalk-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E39D487AD162D25760858F97 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-sidewalk/Pods-sidewalk-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/Font-Awesome-Swift/Font_Awesome_Swift.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Font_Awesome_Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-sidewalk/Pods-sidewalk-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FD5ABCF9E4EA2D6976101D5A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-sidewalk-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0F4166C51F75F780005377C7 /* Sources */ = {
@@ -272,13 +373,14 @@
 		};
 		0F4166DC1F75F780005377C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5BC3DBFA1CC03BBCE789DC13 /* Pods-sidewalk.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FC396XDZVW;
 				INFOPLIST_FILE = sidewalk/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tw.idv.hoebus.sidewalk;
+				PRODUCT_BUNDLE_IDENTIFIER = tw.idv.hoebus.sidewalk2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -287,13 +389,14 @@
 		};
 		0F4166DD1F75F780005377C7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 89D68454C58C555046A62A0B /* Pods-sidewalk.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FC396XDZVW;
 				INFOPLIST_FILE = sidewalk/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tw.idv.hoebus.sidewalk;
+				PRODUCT_BUNDLE_IDENTIFIER = tw.idv.hoebus.sidewalk2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
