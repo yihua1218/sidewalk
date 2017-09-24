@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F19813A1F77C91800040A8F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F1981391F77C91800040A8F /* GoogleService-Info.plist */; };
 		0F4166CD1F75F780005377C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4166CC1F75F780005377C7 /* AppDelegate.swift */; };
 		0F4166CF1F75F780005377C7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4166CE1F75F780005377C7 /* ViewController.swift */; };
 		0F4166D21F75F780005377C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F4166D01F75F780005377C7 /* Main.storyboard */; };
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		019E32678B3C8BF6C3E71CF6 /* Pods_sidewalk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sidewalk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F1981391F77C91800040A8F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0F4166C91F75F780005377C7 /* sidewalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sidewalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F4166CC1F75F780005377C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F4166CE1F75F780005377C7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 		0F4166C01F75F780005377C7 = {
 			isa = PBXGroup;
 			children = (
+				0F1981391F77C91800040A8F /* GoogleService-Info.plist */,
 				0FEC0C0D1F76505500DC7DBC /* Google-Maps-iOS-Utils */,
 				0F4166CB1F75F780005377C7 /* sidewalk */,
 				0F4166CA1F75F780005377C7 /* Products */,
@@ -438,6 +441,7 @@
 				0FEC0C781F7656D600DC7DBC /* doc.kml in Resources */,
 				0FEC0C791F7656D600DC7DBC /* icon-1.png in Resources */,
 				0FEC0C7D1F7656D600DC7DBC /* icon-5.png in Resources */,
+				0F19813A1F77C91800040A8F /* GoogleService-Info.plist in Resources */,
 				0FEC0C7C1F7656D600DC7DBC /* icon-4.png in Resources */,
 				0FEC0C7E1F7656D600DC7DBC /* icon-6.png in Resources */,
 			);
@@ -453,8 +457,10 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-sidewalk/Pods-sidewalk-resources.sh",
+				"${PODS_ROOT}/GoogleAuthUtilities/Frameworks/frameworks/GoogleAuthUtilities.framework/Resources/GTMOAuth2ViewTouch.xib",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -478,6 +484,8 @@
 				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
 				"${BUILT_PRODUCTS_DIR}/Font-Awesome-Swift/Font_Awesome_Swift.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -490,6 +498,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Font_Awesome_Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",

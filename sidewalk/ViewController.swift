@@ -28,6 +28,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     var polyline : GMSPolyline!
     var state = true
     var start = false
+    var login = false
     
     // Panel
     var recordButton : UIButton!
@@ -51,6 +52,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     var triangleButton : UIButton!
     var triangleImage : UIImage!
     var triangleImageHighlighted : UIImage!
+    
+    // Sign-In / Sign-Out
+    var signInButton : UIButton!
+    var signInImage : UIImage!
+    var signInImageHighlighted : UIImage!
+
+    var signOutButton : UIButton!
+    var signOutImage : UIImage!
+    var signOutImageHighlighted : UIImage!
 
     // Color
     let green = UIColor.init(red: 15.0/255.0, green: 157.0/255.0, blue: 88.0/255.0, alpha: 1.0)
@@ -98,6 +108,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         
         renderer.render()
         
+        // Sign-In
+        signInImage = UIImage.init(bgIcon: .FACircle, bgTextColor: .black, topIcon: .FASignIn, topTextColor: .white, bgLarge: true)
+        signInImageHighlighted = UIImage.init(bgIcon: .FACircle, bgTextColor: .black, topIcon: .FASignIn, topTextColor: .gray, bgLarge: true)
+        signOutImage = UIImage.init(bgIcon: .FACircle, bgTextColor: .black, topIcon: .FASignOut, topTextColor: .white, bgLarge: true)
+        signOutImageHighlighted = UIImage.init(bgIcon: .FACircle, bgTextColor: .black, topIcon: .FASignOut, topTextColor: .gray, bgLarge: true)
+        signInButton = UIButton()
+        signInButton.setImage(signInImage, for: .normal)
+        signInButton.setImage(signInImageHighlighted, for: .highlighted)
+        view.addSubview(signInButton)
+        signInButton.autoPinEdge(toSuperviewEdge: ALEdge.top, withInset: 10.0)
+        signInButton.autoAlignAxis(toSuperviewAxis: ALAxis.vertical)
+        signInButton.addTarget(self, action: #selector(signInButtonClick), for: .touchDown)
+
         // Panel
         recordImage = UIImage.init(bgIcon: .FACircle, bgTextColor: .black, topIcon: .FACircle, topTextColor: .red, bgLarge: true)
         recordImageHighlighted = UIImage.init(bgIcon: .FACircle, bgTextColor: .black, topIcon: .FACircle, topTextColor: .white, bgLarge: true)
@@ -217,6 +240,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         print("Error: \(error)")
     }
     
+    @objc func signInButtonClick(sender: UIButton) {
+        print("signInButtonClick")
+        if (login == false) {
+            print("signIn")
+            login = true
+            signInButton.setImage(signOutImage, for: .normal)
+            signInButton.setImage(signOutImageHighlighted, for: .highlighted)
+        } else {
+            print("signOut")
+            login = false
+            signInButton.setImage(signInImage, for: .normal)
+            signInButton.setImage(signInImageHighlighted, for: .highlighted)
+        }
+    }
+
     @objc func recordButtonClick(sender: UIButton) {
         print("recordButtonClick")
         start = true
