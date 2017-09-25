@@ -13,13 +13,15 @@ target 'sidewalk' do
   pod 'FacebookLogin'
   # pod 'FacebookShare' # Compiling Fail.
   # For Google Login
-  pod 'Firebase'
+  # pod 'Firebase'
   # For Google Map
   pod 'GoogleMaps'
   pod 'GooglePlaces'
   # pod 'Google-Maps-iOS-Utils'
-  # Google Sign-In
-  pod 'GoogleSignIn'
   # Google Drive
-  pod 'GoogleAPIClientForREST/Drive'
+  # pod 'GoogleAPIClientForREST/Drive'
+  pod 'GoogleAPIClientForREST/Drive', '~> 1.2.1'
+  # Google Sign-In
+  # pod 'GoogleSignIn'
+  pod 'Google/SignIn', '~> 3.0.3'
 end

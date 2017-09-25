@@ -22,6 +22,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     private var renderer: GMUGeometryRenderer!
     private var kmlParser: GMUKMLParser!
     
+    // Pathlog
+    var pathlog = String()
+    
     // Locations
     var locationManager = CLLocationManager()
     var currentLocation: CLLocation?
@@ -82,6 +85,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().signInSilently()
+        GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/drive")
         
         locationManager.distanceFilter = kCLLocationAccuracyBest;
         locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -194,6 +198,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         view.addSubview(stopButton)
         stopButton.autoPinEdge(ALEdge.left, to: ALEdge.right, of: pauseButton, withOffset: 10.0)
         stopButton.autoAlignAxis(ALAxis.horizontal, toSameAxisOf: pauseButton)
+        stopButton.addTarget(self, action: #selector(stopButtonClick), for: .touchDown)
         
         // Callback for entring background
         NotificationCenter.default.addObserver(self, selector: #selector(willResignActive), name: .UIApplicationWillResignActive, object: nil)
@@ -216,6 +221,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         }
         
         lastLocation = location
+        
+        let dateFormatterPrint = DateFormatter()
+        let timeFormatterPrint = DateFormatter()
+        // 2017-09-18T21:29:40Z
+        dateFormatterPrint.dateFormat = "yyyy-MM-dd"
+        timeFormatterPrint.dateFormat = "hh:mm:ss"
+        let date = Date()
+        let now_date = dateFormatterPrint.string(from: date)
+        let now_time = timeFormatterPrint.string(from: date)
+        pathlog = pathlog + "\(now_date)T\(now_time)Z,\(location.coordinate.latitude),\(location.coordinate.longitude)\n"
+        
         
         if (path != nil && distance > 1.0) {
             path?.add(CLLocationCoordinate2D(latitude:location.coordinate.latitude, longitude: location.coordinate.longitude))
@@ -350,6 +366,32 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         }
     }
     
+    @objc func stopButtonClick(sender: UIButton) {
+        print("stopButtonClick")
+        let fileData = pathlog.data(using: .utf8)
+        let folderId = "0B8fZpGSJ3Od8cUV3Vy1xNTRCcms"
+        let metadata = GTLRDrive_File.init()
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "yyyyMMddhhmmss"
+        let date = Date()
+        metadata.name = dateFormatterPrint.string(from: date)
+        metadata.mimeType = "application/vnd.google-apps.spreadsheet"
+        metadata.parents = [folderId]
+        
+        let uploadParameters = GTLRUploadParameters(data: fileData! , mimeType: "text/csv")
+        uploadParameters.shouldUploadWithSingleRequest = true
+        let query = GTLRDriveQuery_FilesCreate.query(withObject: metadata, uploadParameters: uploadParameters)
+        query.fields = "id"
+        self.service.executeQuery(query, completionHandler: {(ticket:GTLRServiceTicket, object:Any?, error:Error?) in
+            if error == nil {
+                //  print("File ID \(files.identifier)")
+            }
+            else {
+                print("An error occurred: \(String(describing: error))")
+            }
+        })
+    }
+    
     @objc func willResignActive(sender: UIButton) {
         print("willResignActive")
         if (start == true) {
@@ -386,6 +428,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
             print(givenName ?? "no givenName")
             print(familyName ?? "no familyName")
             print(email ?? "no email")
+            print(user.authentication.accessToken ?? "no access token")
+            print(user.accessibleScopes ?? "no scopes")
+            
+            service.authorizer = user.authentication.fetcherAuthorizer()
         } else {
             print("didSignInFor")
             print("\(error.localizedDescription)")
