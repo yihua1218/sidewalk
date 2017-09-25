@@ -18,4 +18,8 @@ target 'sidewalk' do
   pod 'GoogleMaps'
   pod 'GooglePlaces'
   # pod 'Google-Maps-iOS-Utils'
+  # Google Sign-In
+  pod 'GoogleSignIn'
+  # Google Drive
+  pod 'GoogleAPIClientForREST/Drive'
 end

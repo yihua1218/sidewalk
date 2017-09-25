@@ -10,10 +10,15 @@ import UIKit
 import CoreLocation
 import GoogleMaps
 import GoogleToolboxForMac
+import GoogleAPIClientForREST
+import GoogleSignIn
 import Font_Awesome_Swift
 import PureLayout
 
-class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, GIDSignInDelegate, GIDSignInUIDelegate {
+    private let scopes = [kGTLRAuthScopeDriveReadonly]
+    private let service = GTLRDriveService()
+
     private var renderer: GMUGeometryRenderer!
     private var kmlParser: GMUKMLParser!
     
@@ -54,10 +59,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     var triangleImageHighlighted : UIImage!
     
     // Sign-In / Sign-Out
-    var signInButton : UIButton!
+    var signInButton : GIDSignInButton!
     var signInImage : UIImage!
     var signInImageHighlighted : UIImage!
-
+    
     var signOutButton : UIButton!
     var signOutImage : UIImage!
     var signOutImageHighlighted : UIImage!
@@ -71,6 +76,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // Google Sign In
+        GIDSignIn.sharedInstance().clientID = "688342738323-0f3cmkcfv04ilgq885achndjvb83kio3.apps.googleusercontent.com"
+        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().signInSilently()
         
         locationManager.distanceFilter = kCLLocationAccuracyBest;
         locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -113,13 +124,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         signInImageHighlighted = UIImage.init(bgIcon: .FACircle, bgTextColor: .black, topIcon: .FASignIn, topTextColor: .gray, bgLarge: true)
         signOutImage = UIImage.init(bgIcon: .FACircle, bgTextColor: .black, topIcon: .FASignOut, topTextColor: .white, bgLarge: true)
         signOutImageHighlighted = UIImage.init(bgIcon: .FACircle, bgTextColor: .black, topIcon: .FASignOut, topTextColor: .gray, bgLarge: true)
-        signInButton = UIButton()
-        signInButton.setImage(signInImage, for: .normal)
-        signInButton.setImage(signInImageHighlighted, for: .highlighted)
+        signInButton = GIDSignInButton()
+        // signInButton.setImage(signInImage, for: .normal)
+        // signInButton.setImage(signInImageHighlighted, for: .highlighted)
         view.addSubview(signInButton)
-        signInButton.autoPinEdge(toSuperviewEdge: ALEdge.top, withInset: 10.0)
-        signInButton.autoAlignAxis(toSuperviewAxis: ALAxis.vertical)
-        signInButton.addTarget(self, action: #selector(signInButtonClick), for: .touchDown)
+        signInButton.autoPinEdge(toSuperviewEdge: ALEdge.top, withInset: 20.0)
+        signInButton.autoPinEdge(toSuperviewEdge: ALEdge.left, withInset: 20.0)
+        // signInButton.addTarget(self, action: #selector(signInButtonClick), for: .touchDown)
+        
+        signOutButton = UIButton()
+        signOutButton.setImage(signOutImage, for: .normal)
+        signOutButton.setImage(signOutImageHighlighted, for: .highlighted)
+        view.addSubview(signOutButton)
+        signOutButton.isHidden = true
+        signOutButton.autoPinEdge(toSuperviewEdge: ALEdge.top, withInset: 20.0)
+        signOutButton.autoPinEdge(toSuperviewEdge: ALEdge.left, withInset: 20.0)
+        signOutButton.addTarget(self, action: #selector(signOutButtonClick), for: .touchDown)
 
         // Panel
         recordImage = UIImage.init(bgIcon: .FACircle, bgTextColor: .black, topIcon: .FACircle, topTextColor: .red, bgLarge: true)
@@ -245,16 +265,38 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         if (login == false) {
             print("signIn")
             login = true
-            signInButton.setImage(signOutImage, for: .normal)
-            signInButton.setImage(signOutImageHighlighted, for: .highlighted)
+            // signInButton.setImage(signOutImage, for: .normal)
+            // signInButton.setImage(signOutImageHighlighted, for: .highlighted)
         } else {
             print("signOut")
             login = false
-            signInButton.setImage(signInImage, for: .normal)
-            signInButton.setImage(signInImageHighlighted, for: .highlighted)
+            // signInButton.setImage(signInImage, for: .normal)
+            // signInButton.setImage(signInImageHighlighted, for: .highlighted)
         }
     }
+    
+    @objc func signOutButtonClick(sender: UIButton) {
+        print("signOutButtonClick")
+        GIDSignIn.sharedInstance().signOut()
+        
+        signInButton.isHidden = false
+        signOutButton.isHidden = true
+        login = false
 
+        /*
+        if (login == false) {
+            print("signIn")
+            login = true
+            // signInButton.setImage(signOutImage, for: .normal)
+            // signInButton.setImage(signOutImageHighlighted, for: .highlighted)
+        } else {
+            print("signOut")
+            login = false
+            // signInButton.setImage(signInImage, for: .normal)
+            // signInButton.setImage(signInImageHighlighted, for: .highlighted)
+        } */
+    }
+    
     @objc func recordButtonClick(sender: UIButton) {
         print("recordButtonClick")
         start = true
@@ -322,6 +364,43 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         print("willEnterForeground")
         print("startUpdatingLocation")
         locationManager.startUpdatingLocation()
+    }
+    
+    // Google Sign In
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if (error == nil) {
+            signInButton.isHidden = true
+            signOutButton.isHidden = false
+            login = true
+            // Perform any operations on signed in user here.
+            let userId = user.userID                  // For client-side use only!
+            let idToken = user.authentication.idToken // Safe to send to the server
+            let fullName = user.profile.name
+            let givenName = user.profile.givenName
+            let familyName = user.profile.familyName
+            let email = user.profile.email
+            // ...
+            print(userId ?? "no userId")
+            print(idToken ?? "no idToken")
+            print(fullName ?? "no fullName")
+            print(givenName ?? "no givenName")
+            print(familyName ?? "no familyName")
+            print(email ?? "no email")
+        } else {
+            print("didSignInFor")
+            print("\(error.localizedDescription)")
+        }
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        if (error == nil) {
+            signInButton.isHidden = false
+            signOutButton.isHidden = true
+            login = false
+        } else {
+            print("didDisconnectWith")
+            print("\(error.localizedDescription)")
+        }
     }
 }
 
