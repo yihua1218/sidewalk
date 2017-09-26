@@ -34,9 +34,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     var zoomLevel: Float = 21.0
     var path : GMSMutablePath?
     var polyline : GMSPolyline!
+    
+    // Optins and state
     var state = true
     var start = false
     var login = false
+    var follow = false
+    var first_location = false
     
     // Panel
     var recordButton : UIButton!
@@ -84,9 +88,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         GIDSignIn.sharedInstance().clientID = "688342738323-0f3cmkcfv04ilgq885achndjvb83kio3.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().uiDelegate = self
-        GIDSignIn.sharedInstance().signInSilently()
         GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/drive")
-        
+        GIDSignIn.sharedInstance().signInSilently()
+
         locationManager.distanceFilter = kCLLocationAccuracyBest;
         locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         locationManager.requestAlwaysAuthorization()
@@ -243,15 +247,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
             polyline.map = mapView
         }
         
-        let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,
-                                              longitude: location.coordinate.longitude,
-                                              zoom: mapView.camera.zoom)
-        
-        if mapView.isHidden {
-            mapView.isHidden = false
-            mapView.camera = camera
-        } else {
-            mapView.animate(to: camera)
+        if follow || first_location == false {
+            let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,
+                                                  longitude: location.coordinate.longitude,
+                                                  zoom: mapView.camera.zoom)
+            
+            if mapView.isHidden {
+                mapView.isHidden = false
+                mapView.camera = camera
+            } else {
+                mapView.animate(to: camera)
+            }
+            first_location = true
         }
     }
     
