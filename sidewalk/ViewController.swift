@@ -230,7 +230,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         let date = Date()
         let now_date = dateFormatterPrint.string(from: date)
         let now_time = timeFormatterPrint.string(from: date)
-        pathlog = pathlog + "\(now_date)T\(now_time)Z,\(location.coordinate.latitude),\(location.coordinate.longitude)\n"
+        pathlog = pathlog +
+            "\(now_date)T\(now_time)Z,\(location.coordinate.latitude),\(location.coordinate.longitude)," +
+            "\(location.altitude),\(location.course),\(location.speed)\n"
         
         
         if (path != nil && distance > 1.0) {
